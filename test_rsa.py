@@ -20,7 +20,6 @@ class TestNumberTheory(unittest.TestCase):
             x = number_theory_functions.modular_inverse(a,n)
             self.assertEqual(1, (a * x) % n)
             self.assertEqual((x % n), x)
-
         self.assertIsNone(number_theory_functions.modular_inverse(119952,34425))
 
 class TestRSA(unittest.TestCase):
