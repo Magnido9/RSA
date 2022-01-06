@@ -1,5 +1,6 @@
 import random
 
+
 import number_theory_functions
 
 class RSA():
@@ -22,14 +23,14 @@ class RSA():
         * The public key (N,e)
         * The private key (N,d)
         """
-        p=number_theory_functions.generate_prime(digits)
         q=number_theory_functions.generate_prime(digits)
+        p=number_theory_functions.generate_prime(digits)
         N=p*q
         res=0
         while res!=1:
             e=random.randrange(2**(digits-1),2**digits)
-            (res,_,_)=number_theory_functions.extended_gcd(e,(q-1)(p-1))
-        d=number_theory_functions.modular_inverse(e,(p-1)(q-1))
+            res,_,_=number_theory_functions.extended_gcd(e,(q-1)*(p-1))
+        d=number_theory_functions.modular_inverse(e,(p-1)*(q-1))
         return RSA(public_key=(N,e),private_key=(N,d))
 
 
@@ -45,7 +46,7 @@ class RSA():
         -------
         c : The encrypted ciphertext
         """
-        (N,e)=self.public_key
+        N,e=self.public_key
         return number_theory_functions.modular_exponent(m,e,N)
 
 
@@ -61,5 +62,5 @@ class RSA():
         -------
         m : The decrypted plaintext
        """
-        (N,d)=self.private
+        N,d=self.private_key
         return number_theory_functions.modular_exponent(c,d,N)

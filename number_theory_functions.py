@@ -59,7 +59,7 @@ def modular_exponent(a, d, n):
     exp=1
     res=1
     for b in binary:
-        if b == 1:
+        if b == '1':
             res=res*(a**exp)%n
         exp=exp**2
     return res
