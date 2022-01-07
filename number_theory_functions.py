@@ -12,7 +12,7 @@ def extended_gcd(a,b):
     -------
     (d, x, y): d = gcd(a,b) = a*x + b*y
     """
-    if a == 0 :
+    if a == 0:
         return b,0,1
     gcd,x1,y1 = extended_gcd(b%a, a)
     x = y1 - (b//a) * x1
@@ -55,14 +55,13 @@ def modular_exponent(a, d, n):
     -------
     b: such that b == (a**d) % n
     """
-    binary="{0:b}".format(d)
-    exp=1
-    res=1
-    for b in binary:
-        if b == '1':
-            res=res*(a**exp)%n
-        exp=exp**2
-    return res
+
+    d = bin(d)[2:]
+    r = 1
+    for i in range(len(d) - 1, -1, -1):
+        r = (r * a ** int(d[i])) % n
+        a = (a ** 2) % n
+    return r
 
 def miller_rabin(n):
     """
@@ -113,7 +112,7 @@ def is_prime(n):
     return True
 
 def generate_prime(digits):
-    for i in range(digits * 10):
+    for _ in range(10*digits):
         n = randrange(10**(digits-1), 10**digits)
         if is_prime(n):
             return n

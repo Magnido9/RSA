@@ -1,6 +1,5 @@
 import random
-
-
+import numpy
 import number_theory_functions
 
 class RSA():
@@ -23,6 +22,7 @@ class RSA():
         * The public key (N,e)
         * The private key (N,d)
         """
+
         q=number_theory_functions.generate_prime(digits)
         p=number_theory_functions.generate_prime(digits)
         N=p*q
@@ -30,6 +30,7 @@ class RSA():
         while res!=1:
             e=random.randrange(2**(digits-1),2**digits)
             res,_,_=number_theory_functions.extended_gcd(e,(q-1)*(p-1))
+        print(e)
         d=number_theory_functions.modular_inverse(e,(p-1)*(q-1))
         return RSA(public_key=(N,e),private_key=(N,d))
 

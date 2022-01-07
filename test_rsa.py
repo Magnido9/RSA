@@ -22,6 +22,7 @@ class TestNumberTheory(unittest.TestCase):
             self.assertEqual((x % n), x)
         self.assertIsNone(number_theory_functions.modular_inverse(119952,34425))
 
+
 class TestRSA(unittest.TestCase):
     def test_encrypt_decrypt(self):
         rsa = RSA.generate(10)
